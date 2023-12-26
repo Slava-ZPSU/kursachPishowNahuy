@@ -1,0 +1,16 @@
+.undetected-product {
+    display: none;
+}
+.product-image {
+    height: 400px;
+    color: transparent;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+}
+.product-name {
+    height: 50px;
+    overflow: hidden;
+}
+.product-price {
+    height: 20px;
+}
