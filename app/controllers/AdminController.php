@@ -61,6 +61,15 @@ class AdminController extends Controller {
             $this->view->redirect('admin/moderation');
         }
 
+        if (!empty($_POST)) {
+            if (!$this->model->validateProduct(['name', 'price', 'creator', 'publisher', 'category'], $_POST)) {
+                $this->view->message('error', $this->model->error);
+            }
+
+            $this->model->editProduct($product[0]['id'], $_POST);
+            $this->view->message('success', 'Дані збережено');
+        }
+
         $vars = [
             'product' => $product[0],
         ];

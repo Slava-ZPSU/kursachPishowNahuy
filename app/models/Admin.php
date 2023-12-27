@@ -104,6 +104,20 @@ class Admin extends Model {
         return $this->db->row($sql);
     }
 
+    public function editProduct($id, $post) {
+        $params = [
+            'id' => $id,
+            'name' => $post['name'],
+            'price' => $post['price'],
+            'creator' => $post['creator'],
+            'publisher' => $post['publisher'],
+            'category' => $post['category'],
+            'description' => $post['description'],
+        ];
+
+        $this->db->query("UPDATE Products SET name = :name, price = :price, creator = :creator, publisher = :publisher, category = :category, description = :description WHERE id = :id", $params);
+    }
+
     public function addProduct($fileDir, $post) {
         $params = [
             'image' => $fileDir,
