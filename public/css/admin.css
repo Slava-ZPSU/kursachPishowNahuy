@@ -498,3 +498,8 @@ footer.sticky-footer {
         width: calc(100% - 55px);
     }
 }
+
+#selected-image {
+    width: 200px;
+    height: 200px;
+}

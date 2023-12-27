@@ -56,7 +56,7 @@ class AdminController extends Controller {
     }
 
     public function editAction() {
-        $product = $this->model->getProductById($this->route['token']);
+        $product = $this->model->getProductById($this->route['id']);
         if (!$product) {
             $this->view->redirect('admin/moderation');
         }
@@ -66,7 +66,17 @@ class AdminController extends Controller {
                 $this->view->message('error', $this->model->error);
             }
 
-            $this->model->editProduct($product[0]['id'], $_POST);
+            $uploadFile = '';
+            if (!empty($_FILES['image']['tmp_name'])){
+                if (!$this->model->isImageFile($_FILES['image'])) {
+                    $this->view->message('error', $this->model->error);
+                }
+                $uploadFile = $this->model->UploadImage($_FILES['image']);
+                if (!$uploadFile) {
+                    $this->view->message('error', 'Error uploading file');
+                }
+            }
+            $this->model->editProduct($product[0]['id'], $_POST, $uploadFile);
             $this->view->message('success', 'Дані збережено');
         }
 
@@ -78,7 +88,13 @@ class AdminController extends Controller {
     }
 
     public function deleteAction() {
+        $product = $this->model->getProductById($this->route['id']);
+        if (!$product) {
+            $this->view->redirect('admin/moderation');
+        }
 
+        $this->model->deleteProduct($product[0]['id'], $product[0]['image']);
+        $this->view->redirect('admin/moderation');
     }
 
     public function addAction() {
@@ -93,10 +109,8 @@ class AdminController extends Controller {
                 $this->view->message('error', $this->model->error);
             }
 
-            $uploadDir = 'uploads/';
-            $uploadFile = $uploadDir . basename($_FILES['image']['name']);
-
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+            $uploadFile = $this->model->UploadImage($_FILES['image']);
+            if ($uploadFile) {
                 $this->model->addProduct($uploadFile, $_POST);
                 $this->view->message('success', 'Товар успішно доданий');
             } else {

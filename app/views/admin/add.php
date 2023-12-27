@@ -5,7 +5,9 @@
             <form action="/admin/add" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="image">Постер:</label>
-                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required onchange="displayImage(this)">
+                    <p class="help-block"></p>
+                    <img id="selected-image" src="<?php echo $product['image']; ?>" alt="Selected Image" hidden="hidden">
                     <p class="help-block"></p>
                 </div>
 

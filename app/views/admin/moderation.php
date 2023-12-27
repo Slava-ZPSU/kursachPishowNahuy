@@ -22,9 +22,9 @@
                                 <a class="btn btn-primary btn-sm" href="/admin/edit/<?php echo $product['id']; ?>">
                                     Редагувати
                                 </a>
-                                <button type="button" class="btn btn-danger btn-sm">
+                                <a class="btn btn-danger btn-sm" href="/admin/delete/<?php echo $product['id']; ?>">
                                     Видалити
-                                </button>
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

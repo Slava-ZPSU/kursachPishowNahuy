@@ -9,6 +9,7 @@ return [
         'logout',
         'add',
         'edit',
+        'delete',
     ],
     'mainAdmin' => [
         'register',

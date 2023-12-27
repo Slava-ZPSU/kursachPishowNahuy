@@ -2,7 +2,15 @@
     <div class="container-fluid">
         <div class="container mt-5">
             <h2 class="mb-4">Форма редагування товару</h2>
-            <form action="/admin/edit/<?php echo $product['id']?>" method="post">
+            <form action="/admin/edit/<?php echo $product['id']?>" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="image">Постер:</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="displayImage(this)">
+                    <p class="help-block"></p>
+                    <img id="selected-image" src="" alt="Selected Image" hidden="hidden">
+                    <p class="help-block"></p>
+                </div>
+
                 <div class="form-group">
                     <label for="name">Назва:</label>
                     <input type="text" class="form-control" id="name" name="name" required value="<?php echo $product['name']?>">

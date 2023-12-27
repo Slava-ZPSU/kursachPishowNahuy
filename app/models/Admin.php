@@ -104,7 +104,7 @@ class Admin extends Model {
         return $this->db->row($sql);
     }
 
-    public function editProduct($id, $post) {
+    public function editProduct($id, $post, $newImage) {
         $params = [
             'id' => $id,
             'name' => $post['name'],
@@ -115,8 +115,26 @@ class Admin extends Model {
             'description' => $post['description'],
         ];
 
-        $this->db->query("UPDATE Products SET name = :name, price = :price, creator = :creator, publisher = :publisher, category = :category, description = :description WHERE id = :id", $params);
+        $sql = '';
+        if ($newImage != '') {
+            $params['image'] = $newImage;
+            $sql = ', image = :image ';
+            $oldImage = $this->db->column("SELECT image FROM Products WHERE id = :id", ['id' => $id]);
+            unlink($oldImage);
+        }
+
+        $this->db->query("UPDATE Products SET name = :name, price = :price, creator = :creator, publisher = :publisher, category = :category, description = :description" .$sql. " WHERE id = :id", $params);
     }
+
+    public function deleteProduct($id, $image) {
+        $params = [
+            'id' => $id,
+        ];
+
+        $this->db->query('DELETE FROM Products WHERE id = :id', $params);
+        unlink($image);
+    }
+
 
     public function addProduct($fileDir, $post) {
         $params = [
@@ -193,6 +211,16 @@ class Admin extends Model {
         ];
 
         return $this->db->row('SELECT * FROM Products WHERE id = :id', $params);
+    }
+
+    public function UploadImage($file) {
+        $uploadDir = 'uploads/';
+        $uploadFile = $uploadDir . basename($file['name']);
+
+        if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
+            return $uploadFile;
+        }
+        return false;
     }
 
     public function isImageFile($file) {

@@ -66,11 +66,11 @@ return [
         'controller' => 'admin',
         'action' => 'moderation',
     ],
-    'admin/edit/{token:\w+}' => [
+    'admin/edit/{id:\d+}' => [
         'controller' => 'admin',
         'action' => 'edit',
     ],
-    'admin/delete' => [
+    'admin/delete/{id:\d+}' => [
         'controller' => 'admin',
         'action' => 'delete',
     ],

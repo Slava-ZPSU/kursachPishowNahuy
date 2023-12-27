@@ -26,8 +26,8 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/edit">
-                        <span class="nav-link-text">Редагування</span>
+                    <a class="nav-link" href="/admin/moderation">
+                        <span class="nav-link-text">Модерація товарів</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -63,5 +63,7 @@
         </div>
     </footer>
 <?php endif; ?>
+
+<script src="/public/js/displayUploadImage.js"></script>
 </body>
 </html>
