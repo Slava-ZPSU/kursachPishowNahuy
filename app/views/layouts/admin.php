@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title><?php echo $title; ?></title>
-<link href="/public/css/bootstrap.css" rel="stylesheet">
-<link href="/public/css/admin.css" rel="stylesheet">
-<script src="/public/js/jquery.js"></script>
-<script src="/public/js/form.js"></script>
-<script src="/public/js/popper.js"></script>
-<script src="/public/js/bootstrap.js"></script>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><?php echo $title; ?></title>
+    <link href="/public/css/bootstrap.css" rel="stylesheet">
+    <link href="/public/css/admin.css" rel="stylesheet">
+    <link href="/public/css/stylesForAllPages.css" rel="stylesheet">
+    <link href="/public/fonts/google-fonts.css" rel="stylesheet"  type="text/css">
+    <script src="/public/js/jquery.js"></script>
+    <script src="/public/js/form.js"></script>
+    <script src="/public/js/popper.js"></script>
+    <script src="/public/js/bootstrap.js"></script>
+    <link rel="shortcut icon" href="#" />
 </head>
 <body class="fixed-nav sticky-footer bg-dark">
 <?php if ($this->route['action'] != 'login'): ?>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="/admin/withdraw">Панель Администратора</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand store-logo" href="/admin/moderation">BitBazar</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/withdraw">
-                        <span class="nav-link-text">Заявки на вывод</span>
+                    <a class="nav-link" href="/admin/edit">
+                        <span class="nav-link-text">Редагування</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/history">
-                        <span class="nav-link-text">История</span>
+                    <a class="nav-link" href="/admin/add">
+                        <span class="nav-link-text">Додавання</span>
                     </a>
                 </li>
+                <?php if ($_SESSION['admin']['role'] == 'main'): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/tariffs">
-                        <span class="nav-link-text">Список инвестиций</span>
+                    <a class="nav-link" href="/admin/register">
+                        <span class="nav-link-text">Реєстрація нового адміна</span>
                     </a>
                 </li>
+                <?php endif; ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/logout">
-                        <span class="nav-link-text">Выход</span>
+                        <span class="nav-link-text">Вихід</span>
                     </a>
                 </li>
             </ul>

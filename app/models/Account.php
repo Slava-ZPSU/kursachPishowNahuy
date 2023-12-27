@@ -172,7 +172,6 @@ class Account extends Model {
         } else {
             return true;
         }
-
     }
 
     public function checkStatus($type, $data) {

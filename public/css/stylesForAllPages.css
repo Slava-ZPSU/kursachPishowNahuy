@@ -1,0 +1,13 @@
+.store-logo {
+    font-family: 'Rock Salt', cursive;
+    font-weight: bold;
+    color: #8a00ff;
+    text-align: center;
+    text-shadow: 2px 2px 4px #4d0099;
+    display: inline-block;
+    letter-spacing: 2px;
+}
+
+.store-logo:hover {
+    color: #ff00ff; /* Колір при наведенні миші */
+}

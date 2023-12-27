@@ -14,10 +14,11 @@
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label for="password">Пароль</label>
+                        <label for="password">Пароль:</label>
                         <input id="password" type="password" class="form-control" name="password"
                             <?php echo (isset($password) ? 'value=' .base64_decode($password) : '')?>
                         />
+                        <p class="help-block"></p>
                     </div>
                 </div>
                 <div class="control-group form-group">
@@ -26,6 +27,7 @@
                             <?php echo (isset($rememberMe) ? $rememberMe : '')?>
                         />
                         <label for="remember-me">Запам'ятати мене</label>
+                        <p class="help-block"></p>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Вхід</button>

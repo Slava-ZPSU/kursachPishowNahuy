@@ -9,9 +9,11 @@ class AccountController extends Controller {
         if (!empty($_POST)) {
             if (!$this->model->validate(['email', 'nickname', 'login', 'password'], $_POST)) {
                 $this->view->message('error', $this->model->error);
-            } else if ($this->model->isEmailExists($_POST['email'])) {
+            }
+            if ($this->model->isEmailExists($_POST['email'])) {
                 $this->view->message('error', $this->model->error);
-            } else if (!$this->model->isLoginExists($_POST['login'])) {
+            }
+            if (!$this->model->isLoginExists($_POST['login'])) {
                 $this->view->message('error', $this->model->error);
             }
 
@@ -22,16 +24,23 @@ class AccountController extends Controller {
     }
 
     public function loginAction() {
+        if (isset($_SESSION['account'])) {
+            $this->view->redirect('account/profile');
+        }
+
         if (!empty($_POST)) {
             if (!$this->model->validate(['login', 'password'], $_POST)) {
                 $this->view->message('error', $this->model->error);
-            } else if (!$this->model->checkData($_POST['login'], $_POST['password'])) {
+            }
+            if (!$this->model->checkData($_POST['login'], $_POST['password'])) {
                 $this->view->message('error', $this->model->error);
-            } else if (!$this->model->checkStatus('login', $_POST['login'])) {
+            }
+            if (!$this->model->checkStatus('login', $_POST['login'])) {
                 $this->view->message('error', $this->model->error);
             }
 
             $this->model->login($_POST['login']);
+
             if (!empty($_POST['rememberMe'])) {
                 $userData = [
                     'login' => base64_encode($_POST['login']),
@@ -39,8 +48,9 @@ class AccountController extends Controller {
                     'rememberMe' => 'checked',
                 ];
 
-                setcookie('rememberMe', json_encode($userData), time() + 14 * 24 * 60 * 60, "/");
+                setcookie('rememberMe', json_encode($userData), time() + 14 * 24 * 60 * 60, "/account/login");
             }
+
             $this->view->location('account/profile');
         }
         $vars = (!empty($_COOKIE['rememberMe'])) ? json_decode($_COOKIE['rememberMe'], true) : [];
@@ -65,9 +75,11 @@ class AccountController extends Controller {
         if (!empty($_POST)) {
             if (!$this->model->validate(['email'], $_POST)) {
                 $this->view->message('error', $this->model->error);
-            } else if (!$this->model->isEmailExists($_POST['email'])) {
+            }
+            if (!$this->model->isEmailExists($_POST['email'])) {
                 $this->view->message('error', $this->model->error);
-            } else if (!$this->model->checkStatus('email', $_POST['email'])) {
+            }
+            if (!$this->model->checkStatus('email', $_POST['email'])) {
                 $this->view->message('error', $this->model->error);
             }
 

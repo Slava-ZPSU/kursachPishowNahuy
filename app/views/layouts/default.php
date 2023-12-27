@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/public/css/bootstrap.css" rel="stylesheet">
     <link href="/public/css/main.css" rel="stylesheet">
+    <link href="/public/css/stylesForAllPages.css" rel="stylesheet">
     <link href="/public/css/errors.css" rel="stylesheet">
+    <link href="/public/fonts/google-fonts.css" rel="stylesheet"  type="text/css">
     <script src="/public/js/jquery.js"></script>
     <script src="/public/js/popper.js"></script>
     <script src="/public/js/bootstrap.js"></script>
@@ -15,7 +17,7 @@
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="/">Магазин Ігор</a>
+        <a class="navbar-brand store-logo" href="/">BitBazar</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation"

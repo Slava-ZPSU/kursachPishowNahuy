@@ -5,9 +5,10 @@ return [
         'login',
     ],
     'regularAdmin' => [
+        'moderation',
         'logout',
         'add',
-        'moderation',
+        'edit',
     ],
     'mainAdmin' => [
         'register',

@@ -66,4 +66,16 @@ return [
         'controller' => 'admin',
         'action' => 'moderation',
     ],
+    'admin/edit/{token:\w+}' => [
+        'controller' => 'admin',
+        'action' => 'edit',
+    ],
+    'admin/delete' => [
+        'controller' => 'admin',
+        'action' => 'delete',
+    ],
+    'admin/register' => [
+        'controller' => 'admin',
+        'action' => 'register',
+    ],
 ];

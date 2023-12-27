@@ -31,13 +31,16 @@ abstract class Controller {
 
     public function checkAcl() {
         $this->acl = require 'app/acl/' .$this->route['controller']. '.php';
-        if ($this->isAcl('all')) {
+        // Page
+        if ($this->isAcl('all')) {                                                   // for all users
             return true;
-        } else if (isset($_SESSION['account']['id']) && $this->isAcl('authorize')) {
+        } else if (isset($_SESSION['account']['id']) && $this->isAcl('authorize')) { // for authorize users
             return true;
-        } else if (!isset($_SESSION['account']['id']) && $this->isAcl('guest')) {
+        } else if (!isset($_SESSION['account']['id']) && $this->isAcl('guest')) {    // for guest users
             return true;
-        } else if (!isset($_SESSION['admin']) && $this->isAcl('admin')) {
+        } else if (isset($_SESSION['admin']['role']) && ($_SESSION['admin']['role'] == 'regular' || $_SESSION['admin']['role'] == 'main') && $this->isAcl('regularAdmin')) { // for regular admins
+            return true;
+        } else if (isset($_SESSION['admin']['role']) && $_SESSION['admin']['role'] == 'main' && $this->isAcl('mainAdmin')) { // for main admin
             return true;
         } else {
             return false;

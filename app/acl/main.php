@@ -9,7 +9,4 @@ return [
     'authorize' => [
         //
     ],
-    'guest' => [
-        //
-    ],
 ];
