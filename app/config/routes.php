@@ -6,14 +6,6 @@ return [
         'controller' => 'main',
         'action' => 'index',
     ],
-    'about' => [
-        'controller' => 'main',
-        'action' => 'about',
-    ],
-    'contact' => [
-        'controller' => 'main',
-        'action' => 'contact',
-    ],
     'allProducts' => [
         'controller' => 'main',
         'action' => 'allProducts',

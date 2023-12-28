@@ -96,8 +96,9 @@ class Account extends Model {
         $params = [
             'token' => $token,
             'password' => password_hash($new_password, PASSWORD_BCRYPT),
+            'status' => 1,
         ];
-        $this->db->query('UPDATE accounts SET password = :password, token = "" WHERE token = :token', $params);
+        $this->db->query('UPDATE Accounts SET password = :password, token = "", status = :status WHERE token = :token', $params);
         return $new_password;
     }
 
@@ -108,9 +109,10 @@ class Account extends Model {
         $params = [
             'email' => $post['email'],
             'token' => $token,
+            'status' => 0,
         ];
 
-        $this->db->query("UPDATE Accounts SET token = :token WHERE email = :email", $params);
+        $this->db->query("UPDATE Accounts SET token = :token, status = :status WHERE email = :email", $params);
 
         mail($post['email'], 'Recovery', 'Confirm: http://kursachweb2023/account/reset/' .$token);
 
