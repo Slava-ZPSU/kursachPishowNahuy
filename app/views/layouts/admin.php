@@ -8,11 +8,11 @@
     <link href="/public/css/admin.css" rel="stylesheet">
     <link href="/public/css/stylesForAllPages.css" rel="stylesheet">
     <link href="/public/fonts/google-fonts.css" rel="stylesheet"  type="text/css">
+    <link rel="shortcut icon" href="#" />
     <script src="/public/js/jquery.js"></script>
     <script src="/public/js/form.js"></script>
     <script src="/public/js/popper.js"></script>
     <script src="/public/js/bootstrap.js"></script>
-    <link rel="shortcut icon" href="#" />
 </head>
 <body class="fixed-nav sticky-footer bg-dark">
 <?php if ($this->route['action'] != 'login'): ?>

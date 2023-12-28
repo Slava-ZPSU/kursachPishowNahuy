@@ -149,6 +149,16 @@ class Admin extends Model {
         $this->db->query("INSERT INTO Products (image, name, price, creator, publisher, category, description) VALUES (:image, :name, :price, :creator, :publisher, :category, :description)", $params);
     }
 
+    public function UploadImage($file) {
+        $uploadDir = 'uploads/';
+        $uploadFile = $uploadDir . basename($file['name']);
+
+        if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
+            return '/' .$uploadFile;
+        }
+        return false;
+    }
+
     // Checking
     public function checkData($login, $password) {
         $params = [
@@ -211,16 +221,6 @@ class Admin extends Model {
         ];
 
         return $this->db->row('SELECT * FROM Products WHERE id = :id', $params);
-    }
-
-    public function UploadImage($file) {
-        $uploadDir = 'uploads/';
-        $uploadFile = $uploadDir . basename($file['name']);
-
-        if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
-            return $uploadFile;
-        }
-        return false;
     }
 
     public function isImageFile($file) {

@@ -81,13 +81,6 @@ class Database {
     }
 
     // Check and create Tables in Database
-    public function isTableNotEmpty($tableName) {
-        $sql = "SELECT COUNT(*) FROM $tableName";
-        $result = $this->query($sql);
-
-        return $result > 0;
-    }
-
     private function checkAndCreateTables() {
         try {
             $tables = require 'app/config/dbTables.php';
@@ -135,22 +128,24 @@ class Database {
         try {
             $tablesData = require 'app/config/baseTablesData.php';
 
-            foreach ($tablesData[$name] as $data) {
-                $sql = "INSERT INTO " . $name . " (";
-                foreach ($columns as $column => $params) {
-                    if (strpos($params, 'NOT NULL')) {
-                        $sql .= $column . ", ";
+            if (array_key_exists($name, $tablesData)) {
+                foreach ($tablesData[$name] as $data) {
+                    $sql = "INSERT INTO " . $name . " (";
+                    foreach ($columns as $column => $params) {
+                        if (strpos($params, 'NOT NULL')) {
+                            $sql .= $column . ", ";
+                        }
                     }
-                }
-                $sql = substr_replace($sql, ') VALUES (', -2);
-                foreach ($columns as $column => $params) {
-                    if (strpos($params, 'NOT NULL')) {
-                        $sql .= ":" . $column . ", ";
+                    $sql = substr_replace($sql, ') VALUES (', -2);
+                    foreach ($columns as $column => $params) {
+                        if (strpos($params, 'NOT NULL')) {
+                            $sql .= ":" . $column . ", ";
+                        }
                     }
-                }
-                $sql = substr_replace($sql, ')', -2);
+                    $sql = substr_replace($sql, ')', -2);
 
-                $this->query($sql, $data);
+                    $this->query($sql, $data);
+                }
             }
         } catch (PDOException $e) {
             echo "Помилка при заповненні таблиць: " .$e->getMessage();

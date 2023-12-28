@@ -78,4 +78,14 @@ return [
         'controller' => 'admin',
         'action' => 'register',
     ],
+
+    // Cart
+    'cart/addProductToCart/{id:\d+}' =>[
+        'controller' => 'cart',
+        'action' => 'addProductToCart',
+    ],
+    'cart/showCart' =>[
+        'controller' => 'cart',
+        'action' => 'showCart',
+    ],
 ];

@@ -1,4 +1,5 @@
 <link href="/public/css/products.css" rel="stylesheet">
+<script src="/public/js/asyncAddToCart.js"></script>
 <h3>Page Store</h3>
 <div class="container-fluid col-12">
     <?php if(!empty($products)):?>
@@ -10,6 +11,7 @@
                         <?php echo $product['name']; ?>
                     </div>
                     <div class="product-price"><?php echo $product['price']; ?> грн.</div>
+                    <a class="btn btn-primary" onclick="addToCard(<?php echo $product['id']; ?>)">Додати до корзини</a>
                 </div>
                 <!-- Add more product cards as needed -->
             <?php endforeach; ?>

@@ -9,6 +9,7 @@
     <link href="/public/css/stylesForAllPages.css" rel="stylesheet">
     <link href="/public/css/errors.css" rel="stylesheet">
     <link href="/public/fonts/google-fonts.css" rel="stylesheet"  type="text/css">
+    <link rel="shortcut icon" href="#" />
     <script src="/public/js/jquery.js"></script>
     <script src="/public/js/popper.js"></script>
     <script src="/public/js/bootstrap.js"></script>

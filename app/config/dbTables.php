@@ -30,4 +30,11 @@ return [
         'category' => 'VARCHAR(100) NOT NULL',
         'description' => 'VARCHAR(5000) NOT NULL',
     ],
+    'Cart' => [
+        'id' => 'INT AUTO_INCREMENT PRIMARY KEY',
+        'account_id' => 'INT NOT NULL REFERENCES Accounts(id)',
+        'product_id' => 'INT NOT NULL REFERENCES Products(id)',
+        'price' => 'DECIMAL(6,0) NOT NULL',
+    ],
+
 ];
