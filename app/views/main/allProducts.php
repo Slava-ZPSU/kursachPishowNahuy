@@ -11,7 +11,11 @@
                         <?php echo $product['name']; ?>
                     </div>
                     <div class="product-price"><?php echo $product['price']; ?> грн.</div>
-                    <a class="btn btn-primary" onclick="addToCard(<?php echo $product['id']; ?>)">Додати до корзини</a>
+                    <p class="help-block"></p>
+                    <?php if (isset($_SESSION['account'])): ?>
+                        <a class="btn btn-primary" onclick="addToCard(<?php echo $product['id']; ?>)">Додати до корзини</a>
+                    <?php endif; ?>
+                    <p class="help-block"></p>
                 </div>
                 <!-- Add more product cards as needed -->
             <?php endforeach; ?>

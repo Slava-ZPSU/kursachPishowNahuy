@@ -99,7 +99,7 @@ class AccountController extends Controller {
             'password' => $password,
         ];
 
-        $this->view->render('Пароль зкинуто', $vars);
+        $this->view->render('Пароль відновлено', $vars);
     }
 
     public function profileAction() {

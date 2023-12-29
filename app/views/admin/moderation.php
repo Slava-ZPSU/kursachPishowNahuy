@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <div class="container-fluid">
         <div class="container mt-5">
-            <h2>Редагування товарів</h2>
+            <h2>Модерація товарів</h2>
             <?php if(!empty($products)):?>
                 <table class="table table-bordered table-hover">
                     <thead class="thead-dark">

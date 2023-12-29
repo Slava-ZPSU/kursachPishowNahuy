@@ -35,7 +35,7 @@ class AdminController extends Controller {
 
                 setcookie('rememberMe', json_encode($userData), time() + 14 * 24 * 60 * 60, "/admin/login");
             }
-            $this->view->location('admin/edit');
+            $this->view->location('admin/moderation');
         }
         $vars = (!empty($_COOKIE['rememberMe'])) ? json_decode($_COOKIE['rememberMe'], true) : [];
         $this->view->render('Вхід до Адмін Панелі', $vars);
@@ -71,7 +71,7 @@ class AdminController extends Controller {
                 if (!$this->model->isImageFile($_FILES['image'])) {
                     $this->view->message('error', $this->model->error);
                 }
-                $uploadFile = $this->model->UploadImage($_FILES['image']);
+                $uploadFile = $this->model->uploadImage($_FILES['image']);
                 if (!$uploadFile) {
                     $this->view->message('error', 'Error uploading file');
                 }
@@ -109,7 +109,7 @@ class AdminController extends Controller {
                 $this->view->message('error', $this->model->error);
             }
 
-            $uploadFile = $this->model->UploadImage($_FILES['image']);
+            $uploadFile = $this->model->uploadImage($_FILES['image']);
             if ($uploadFile) {
                 $this->model->addProduct($uploadFile, $_POST);
                 $this->view->message('success', 'Товар успішно доданий');

@@ -117,10 +117,17 @@ class Admin extends Model {
 
         $sql = '';
         if ($newImage != '') {
-            $params['image'] = $newImage;
-            $sql = ', image = :image ';
             $oldImage = $this->db->column("SELECT image FROM Products WHERE id = :id", ['id' => $id]);
-            unlink($oldImage);
+            $sql = "SELECT id FROM Products WHERE image = :image AND id != :id";
+
+            if (!$this->db->column($sql, ['image' => $oldImage, 'id' => $id])) {
+                if (file_exists($oldImage)) {
+                    unlink($oldImage);
+                }
+            }
+
+            $params['image'] = $newImage;
+            $sql = ', image = :image';
         }
 
         $this->db->query("UPDATE Products SET name = :name, price = :price, creator = :creator, publisher = :publisher, category = :category, description = :description" .$sql. " WHERE id = :id", $params);
@@ -131,8 +138,16 @@ class Admin extends Model {
             'id' => $id,
         ];
 
+        $oldImage = $this->db->column("SELECT image FROM Products WHERE id = :id", ['id' => $id]);
+        $sql = "SELECT id FROM Products WHERE image = :image AND id != :id";
+
+        if (!$this->db->column($sql, ['image' => $oldImage, 'id' => $id])) {
+            if (file_exists($oldImage)) {
+                unlink($oldImage);
+            }
+        }
+
         $this->db->query('DELETE FROM Products WHERE id = :id', $params);
-        unlink($image);
     }
 
 
@@ -149,7 +164,7 @@ class Admin extends Model {
         $this->db->query("INSERT INTO Products (image, name, price, creator, publisher, category, description) VALUES (:image, :name, :price, :creator, :publisher, :category, :description)", $params);
     }
 
-    public function UploadImage($file) {
+    public function uploadImage($file) {
         $uploadDir = 'uploads/';
         $uploadFile = $uploadDir . basename($file['name']);
 

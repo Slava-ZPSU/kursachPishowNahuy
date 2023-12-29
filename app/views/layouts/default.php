@@ -33,11 +33,11 @@
                 <?php if (isset($_SESSION['account']['id'])): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/account/profile">
-                            <img src="<?php echo (!empty($_SESSION['account']['image'])) ? $_SESSION['account']['image'] : '/public/images/base-account-Icon.svg'; ?>"
-                                 width="25" alt="profile-image"
-                            />
                             <?php echo $_SESSION['account']['nickname']; ?>
                         </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart/showCart">Кошик</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/account/logout">Вихід</a>

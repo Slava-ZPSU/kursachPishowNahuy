@@ -20,6 +20,6 @@
             </tbody>
         </table>
     <?php else: ?>
-        <p>Корзина порожня</p>
+        <p>Кошик порожній</p>
     <?php endif; ?>
 </div>

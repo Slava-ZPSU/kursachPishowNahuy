@@ -9,14 +9,6 @@ class MainController extends Controller {
         $this->view->render('Main Page');
     }
 
-    public function contactAction () {
-        $this->view->render('Contact Page');
-    }
-
-    public function aboutAction () {
-        $this->view->render('About Page');
-    }
-
     public function allProductsAction() {
         $result = $this->model->getAllProducts();
         $vars = [
